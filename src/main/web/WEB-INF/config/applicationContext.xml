@@ -10,10 +10,9 @@
 
     <import resource="classpath:META-INF/cxf/cxf.xml" />
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+    <bean id="RestBean" class="ru.restlogdate.controller.MainController"/>
 
-    <bean id="RestBean" class="ru.restlogdate.controller.RestController"/>
-
-    <jaxrs:server id="RestService" address="/RestService">
+    <jaxrs:server id="RestService" address="/task">
         <jaxrs:serviceBeans>
             <ref bean="RestBean"/>
         </jaxrs:serviceBeans>
