@@ -1,25 +1,25 @@
 package ru.restlogdate.model;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
-@XmlRootElement(name = "LogDate")
 @Entity
-@Table(name = "LOGDATE")
+@Table(name = "logdate")
 public class LogDate implements Serializable {
-    @Column(name = "ID")
+    @Column(name = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(name = "guid")
     private int GUID;
-    @Column(name = "TIMESTAMP")
-    private LocalDateTime dateTime;
-    @Column(name = "STATUS")
-    private LogStatus logStatus;
+    @Column(name = "date_time")
+    private Timestamp dateTime;
+    @Column(name = "status")
+    private String logStatus;
 
-
-    public LogDate() {
+    public int getId() {
+        return id;
     }
 
     public int getGUID() {
@@ -30,23 +30,19 @@ public class LogDate implements Serializable {
         this.GUID = GUID;
     }
 
-    public String getDateTime() {
-        return dateTime.toString();
+    public Timestamp getDateTime() {
+        return dateTime;
     }
 
-    public void setDateTime(String dateTime) {
-        this.dateTime = LocalDateTime.now();
-    }
-
-    public void setDateTime(LocalDateTime dateTime) {
+    public void setDateTime(Timestamp dateTime) {
         this.dateTime = dateTime;
     }
 
-    public LogStatus getLogStatus() {
+    public String getLogStatus() {
         return logStatus;
     }
 
     public void setLogStatus(LogStatus logStatus) {
-        this.logStatus = logStatus;
+        this.logStatus = logStatus.toString();
     }
 }

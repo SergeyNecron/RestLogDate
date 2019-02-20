@@ -8,5 +8,5 @@ public interface LogDateServiceStencil {
 
     LogDate get(int id);
 
-    void update(int id, LogStatus status);
+    void update(LogDate logDate, LogStatus status);
 }

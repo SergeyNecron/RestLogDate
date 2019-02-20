@@ -29,17 +29,17 @@ public class LogDateRepository implements LogDateRepositoryStencil {
     }
 
     @Override
-    public void removeLogDate(int id) {
+    public void removeLogDate(int guid) {
         Session session = sessionFactory.getCurrentSession();
-        LogDate logDate = session.get(LogDate.class, id);
+        LogDate logDate = (LogDate) session.get(LogDate.class, guid);
         if (logDate != null)
             session.delete(logDate);
     }
 
     @Override
-    public LogDate getLogDate(int id) {
+    public LogDate getLogDate(int guid) {
         Session session = sessionFactory.getCurrentSession();
-        LogDate logDate = session.get(LogDate.class, id);
+        LogDate logDate = (LogDate) session.get(LogDate.class, guid);
         return logDate;
     }
 }

@@ -1,40 +1,31 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
-
-
-           http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs-common.xsd">
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <context:component-scan base-package="ru.restlogdate"/>
 
-    <!--<import resource="classpath:META-INF/cxf/cxf.xml"/>-->
-    <!--<import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>-->
-    <!--<bean id="RestBean" class="ru.restlogdate.controller.MainController"/>-->
-
-    <!--<jaxrs:server id="RestService" address="/task">-->
-    <!--<jaxrs:serviceBeans>-->
-    <!--<ref bean="RestBean"/>-->
-    <!--</jaxrs:serviceBeans>-->
-    <!--</jaxrs:server>-->
-
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
     <context:property-placeholder location="classpath:config.properties"/>
+
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <!--<property name="driverClassName" value="${jdbc.hsqldb.driverClass}"/>-->
-        <!--<property name="url" value="${jdbc.hsqldb.url}"/>-->
-        <!--<property name="username" value="${jdbc.hsqldb.username}"/>-->
-        <!--<property name="password" value="${jdbc.hsqldb.password}"/>-->
         <property name="driverClassName" value="${jdbc.driverClass}"/>
         <property name="url" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
     </bean>
-
     <bean id="hibernate4AnnotatedSessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
@@ -47,15 +38,13 @@
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.format_sql">false</prop>
+                <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
             </props>
         </property>
     </bean>
-    <!-- initialize Embedded DataSource. Встроенная база данных-->
-    <!--<jdbc:initialize-database data-source="dataSource">-->
-    <!--<jdbc:script location="classpath:createDB.sql"/>-->
-    <!--<jdbc:script location="classpath:addData.sql"/>-->
-    <!--</jdbc:initialize-database>-->
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
     </bean>
