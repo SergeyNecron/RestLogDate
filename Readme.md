@@ -1,6 +1,6 @@
 
 
-curl -X POST http://localhost:8080/task/
+curl -X POST -v http://localhost:8080/task/
 curl -v http://localhost:8080/task/{guid}
 например: curl -v http://localhost:8080/task/88
 

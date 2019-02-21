@@ -38,6 +38,7 @@ public class LogDateRepository implements LogDateRepositoryStencil {
         Query query = session.createQuery("FROM LogDate WHERE guid = :thisGuid");
         query.setParameter("thisGuid", thisGuid);
         List<LogDate> logDateList = query.list();
-        return logDateList.get(0);
+
+        return logDateList.size() == 0 ? null : logDateList.get(0);
     }
 }

@@ -45,9 +45,9 @@ public class LogDate implements Serializable {
     @Override
     public String toString() {
         return "Task" +
-                "\n GUID=" + GUID +
-                "\n dateTime=" + dateTime +
-                "\n Status='" + logStatus +
+                "\n GUID =" + GUID +
+                "\n dateTime = " + dateTime +
+                "\n Status = " + logStatus +
                 "\n";
     }
 }
