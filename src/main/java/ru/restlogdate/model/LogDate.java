@@ -18,10 +18,6 @@ public class LogDate implements Serializable {
     @Column(name = "status")
     private String logStatus;
 
-    public int getId() {
-        return id;
-    }
-
     public int getGUID() {
         return GUID;
     }
@@ -44,5 +40,14 @@ public class LogDate implements Serializable {
 
     public void setLogStatus(LogStatus logStatus) {
         this.logStatus = logStatus.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "Task" +
+                "\n GUID=" + GUID +
+                "\n dateTime=" + dateTime +
+                "\n Status='" + logStatus +
+                "\n";
     }
 }

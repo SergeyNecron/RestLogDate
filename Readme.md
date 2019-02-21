@@ -1,3 +1,10 @@
+
+
+curl -X POST http://localhost:8080/task/
+curl -v http://localhost:8080/task/{guid}
+например: curl -v http://localhost:8080/task/88
+
+
 Требуется разработать сервис, предоставляющий следующее REST API
 1. POST /task
  Без параметров

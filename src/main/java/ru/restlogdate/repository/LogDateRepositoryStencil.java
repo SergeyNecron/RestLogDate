@@ -7,7 +7,5 @@ public interface LogDateRepositoryStencil {
 
     void updateLogDate(LogDate logDate);
 
-    void removeLogDate(int id);
-
     LogDate getLogDate(int id);
 }

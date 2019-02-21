@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 public class Utilities {
     public static void DeferMetod(Runnable runnable, int sec) {
 
-        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(2);
         executor.schedule(runnable, sec, TimeUnit.SECONDS);
     }
 }

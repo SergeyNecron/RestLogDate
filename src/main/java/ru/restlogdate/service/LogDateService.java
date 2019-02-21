@@ -26,7 +26,7 @@ public class LogDateService implements LogDateServiceStencil {
         LogDate logDate = new LogDate();
         logDate.setGUID(random.nextInt(Integer.MAX_VALUE));
         logDate.setLogStatus(LogStatus.created);
-        //  logDate.setDateTime(LocalDateTime.now());
+        // logDate.setDateTime(LocalDateTime.now());
         logDateRepository.addLogDate(logDate);
         return logDate;
     }
@@ -34,21 +34,14 @@ public class LogDateService implements LogDateServiceStencil {
     @Override
     @Transactional
     public LogDate get(int guid) {
-        LogDate logDate = logDateRepository.getLogDate(guid);
-        logDate.setLogStatus(LogStatus.created);
-        //  logDate.setDateTime(LocalDateTime.now());
-        logDateRepository.updateLogDate(logDate);
-        return logDate;
+        return logDateRepository.getLogDate(guid);
     }
 
     @Override
     @Transactional
     public void update(LogDate logDate, LogStatus status) {
-//        LogDate logDate = logDateRepository.getLogDate(guid);
-//       // logDate.setDateTime(LocalDateTime.now());
+        // logDate.setDateTime(LocalDateTime.now());
         logDate.setLogStatus(status);
-        System.out.println(status);
         logDateRepository.updateLogDate(logDate);
-
     }
 }

@@ -21,24 +21,21 @@ public class MainController {
         this.logDateService = logDateService;
     }
 
-    //     @ResponseStatus(value = HttpStatus.OK)
-    @RequestMapping(value = "/task", method = RequestMethod.GET)
-    //   public int getLogDate ()  {
-    public LogDate getLogDate() {
+    @RequestMapping(value = "/task", method = RequestMethod.POST)
+    public String getLogDate() {
         LogDate logDate = logDateService.create();
         HttpStatus.valueOf(202);                        // не возвращает статус
-        logDateService.update(logDate, LogStatus.running);
+        Utilities.DeferMetod(() -> logDateService.update(logDate, LogStatus.running), 20);
+        //в задании сначала возвращаем GUID, потом меняем статус на running
         Utilities.DeferMetod(() -> logDateService.update(logDate, LogStatus.finished), 120);
-
-        return logDate;
+        return "GUID:\n" + logDate.getGUID();
     }
 
-    @RequestMapping(value = "/{guid}", method = RequestMethod.GET)
-    public LogDate getLogDateID(@PathVariable(value = "guid") int guid) {
+    @RequestMapping(value = "/task/{guid}", method = RequestMethod.GET)
+    public String getLogDateID(@PathVariable(value = "guid") int guid) {
         LogDate logDate = logDateService.get(guid);
         if (logDate == null) HttpStatus.valueOf(404);
         HttpStatus.valueOf(200);
-        return logDate;
-        //  return logDate.getLogStatus();
+        return logDate.toString();
     }
 }
