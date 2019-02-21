@@ -7,6 +7,8 @@ import ru.restlogdate.model.LogDate;
 import ru.restlogdate.model.LogStatus;
 import ru.restlogdate.repository.LogDateRepositoryStencil;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Random;
 
 @Service
@@ -26,7 +28,7 @@ public class LogDateService implements LogDateServiceStencil {
         LogDate logDate = new LogDate();
         logDate.setGUID(random.nextInt(Integer.MAX_VALUE));
         logDate.setLogStatus(LogStatus.created);
-        // logDate.setDateTime(LocalDateTime.now());
+        logDate.setDateTime(Timestamp.valueOf(LocalDateTime.now()));
         logDateRepository.addLogDate(logDate);
         return logDate;
     }
@@ -40,7 +42,7 @@ public class LogDateService implements LogDateServiceStencil {
     @Override
     @Transactional
     public void update(LogDate logDate, LogStatus status) {
-        // logDate.setDateTime(LocalDateTime.now());
+        logDate.setDateTime(Timestamp.valueOf(LocalDateTime.now()));
         logDate.setLogStatus(status);
         logDateRepository.updateLogDate(logDate);
     }
