@@ -2,17 +2,17 @@ package ru.restlogdate.model;
 
 import ru.restlogdate.Utilities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "logdate")
 public class LogDate implements Serializable {
-    @Column(name = "id")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
     @Column(name = "guid")
     private int GUID;
     @Column(name = "date_time")
@@ -47,8 +47,8 @@ public class LogDate implements Serializable {
 
     @Override
     public String toString() {
-        return "Task" +
-                "\n GUID =" + GUID +
+        return "Task " +
+                "\n GUID = " + GUID +
                 "\n dateTime = " + Utilities.DateTimeFormater(dateTime) +
                 "\n Status = " + logStatus +
                 "\n";

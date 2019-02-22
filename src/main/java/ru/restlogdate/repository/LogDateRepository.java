@@ -1,13 +1,10 @@
 package ru.restlogdate.repository;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.restlogdate.model.LogDate;
-
-import java.util.List;
 
 @Repository
 public class LogDateRepository implements LogDateRepositoryStencil {
@@ -32,13 +29,8 @@ public class LogDateRepository implements LogDateRepositoryStencil {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public LogDate getLogDate(int thisGuid) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("FROM LogDate WHERE guid = :thisGuid");
-        query.setParameter("thisGuid", thisGuid);
-        List<LogDate> logDateList = query.list();
-
-        return logDateList.size() == 0 ? null : logDateList.get(0);
+        return (LogDate) session.get(LogDate.class, thisGuid);
     }
 }

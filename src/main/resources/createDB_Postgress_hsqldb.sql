@@ -1,19 +1,15 @@
 DROP TABLE IF EXISTS logdate;
-
 create table logdate
 (
-  id        serial
+  guid      integer     not null
     constraint logdate_pk
       primary key,
-  guid      int         not null,
-  date_time timestamp,
+  date_time timestamp   not null,
   status    varchar(25) not null
 );
 
 create unique index logdate_guid_uindex
   on logdate (guid);
-
-
 
 
 
