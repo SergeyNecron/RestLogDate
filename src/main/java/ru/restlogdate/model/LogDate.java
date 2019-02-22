@@ -1,5 +1,7 @@
 package ru.restlogdate.model;
 
+import ru.restlogdate.Utilities;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -15,6 +17,7 @@ public class LogDate implements Serializable {
     private int GUID;
     @Column(name = "date_time")
     private Timestamp dateTime;
+    //Если хранить LocalDateTime, то session выдаёт ошибку при сохранении в базе
     @Column(name = "status")
     private String logStatus;
 
@@ -46,7 +49,7 @@ public class LogDate implements Serializable {
     public String toString() {
         return "Task" +
                 "\n GUID =" + GUID +
-                "\n dateTime = " + dateTime +
+                "\n dateTime = " + Utilities.DateTimeFormater(dateTime) +
                 "\n Status = " + logStatus +
                 "\n";
     }
