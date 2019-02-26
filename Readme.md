@@ -42,7 +42,7 @@
 Добавление задачи и полученние guid:
 curl -X POST -v http://localhost:8080/task/
 или или через браузер: 
-data:text/html,<form action="http://localhost:8080/task" method="post"><input type="submit"></form>
+data:text/html,&lt;form action="http://localhost:8080/task" method="post"&gt;&lt;input type="submit"&gt;&lt;/form&gt;
 
 Просмотр статуса задачи по guid:
 curl -v http://localhost:8080/task/{guid}
