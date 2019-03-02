@@ -9,12 +9,14 @@
 <pre>
         <h1>                                  REST API </h1>
 <h2>                                            Java 8 (Сoncurrent,Time API,Lambda),
-                                            Maven 3.39,
-                                            Spring MVC 4.0.3,
-                                            Hibernate 4.3.5,
-                                            Tomcat 8.5.9,
-                                            Mysql 5.1.36,
-                                            Postgres 42.2.1.
+                                            Maven,
+                                            Spring MVC,
+                                            Hibernate,
+                                            Tomcat,
+                                            Mysql,
+                                            Postgres,
+                                            Heroku.
+
 </h2>
         <div style="text-align: center;"> <form action="http://localhost:8080/task" method="post"><input
                 value="Отправить Post запрос" type="submit"></form>

@@ -1,12 +1,13 @@
 
  REST API
  Java 8 (Сoncurrent,Time API,Lambda),
- Maven 3.39,
- Spring MVC 4.0.3,
- Hibernate 4.3.5,
- Tomcat 8.5.9,
- Mysql 5.1.36,
- Postgres 42.2.1.
+ Maven,
+ Spring MVC,
+ Hibernate,
+ Tomcat,
+ Mysql,
+ Postgres.
+ Heroku.
 
 Описание задачи:
 Требуется разработать сервис, предоставляющий следующее REST API
@@ -30,6 +31,35 @@
 
 Возвращает 404, если такой задачи нет
 Возвращает 400, если передан не GUID
+
+Проверка приложения:
+На Heroku: https://restlogdate.herokuapp.com
+
+или
+
+Добавление задачи и полученние guid:
+curl -X POST -v https://restlogdate.herokuapp.com/task/
+ или через браузер: 
+data:text/html,&lt;form action="https://restlogdate.herokuapp.com/task" method="post"&gt;&lt;input type="submit"&gt;&lt;/form&gt;
+
+Просмотр статуса задачи по guid:
+curl -v https://restlogdate.herokuapp.com/task/{guid}
+или через браузер:
+https://restlogdate.herokuapp.com/task/{guid}
+
+например: 
+запрашиваем не существующий task :
+curl -v https://restlogdate.herokuapp.com/task/88
+или через браузер https://restlogdate.herokuapp.com/task/88
+ответ : NO SUCH task: 88
+
+запрашиваем существующий task :
+https://restlogdate.herokuapp.com/task/77777
+или через браузер https://restlogdate.herokuapp.com/task/77777
+ответ : Task GUID = 77777 dateTime = 2019-02-20T15:11:01 Status = created 
+
+При компиляции локально:
+
 Запуск осуществляеться с помомощью вебсервера Tomcat, при конфигурации не указывать дополнительный путь, только /
 
 Для запуска с MySql необходимо: создать базу test, юзера user c паролем Password1! , выполнить скрипт createDBMySql.sql в созданную базу, а затем добавление данных addData.sql
@@ -37,16 +67,14 @@
 Для запуска с Postgres необходимо: закоментировать настройки mysql в config, раскоментировать настройки c Postgres,
 создать базу restlogdate, юзера user c паролем password , выполнить скрипт createDB_Postgress_hsqldb.sql в созданную базу, а затем добавление данных addData.sql
 
-Проверка приложения:
-
 Добавление задачи и полученние guid:
 curl -X POST -v http://localhost:8080/task/
-или или через браузер: 
+или через браузер: 
 data:text/html,&lt;form action="http://localhost:8080/task" method="post"&gt;&lt;input type="submit"&gt;&lt;/form&gt;
 
 Просмотр статуса задачи по guid:
 curl -v http://localhost:8080/task/{guid}
-или или через браузер:
+или через браузер:
 http://localhost:8080/task/{guid}
 
 например: 
