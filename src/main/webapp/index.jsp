@@ -18,10 +18,10 @@
                                             Heroku.
 
 </h2>
-        <div style="text-align: center;"> <form action="http://localhost:8080/task" method="post"><input
+        <div style="text-align: center;"> <form action="https://restlogdate.herokuapp.com//task" method="post"><input
                 value="Отправить Post запрос" type="submit"></form>
         Далее для получениея статуса введите полученный guid строку браузера, после task: <a
-                    href="http://localhost:8080/task/77777">http://localhost:8080/task/77777</a></div>
+                    href="https://restlogdate.herokuapp.com//task/77777">https://restlogdate.herokuapp.com//task/77777</a></div>
 
 <span style="font-size: large; color: black; font-family: Arial; ">
    <b> Описание приложения:</b>
