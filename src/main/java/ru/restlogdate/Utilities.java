@@ -8,7 +8,17 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Utilities {
+    private static int count = 0;
+
+    static boolean isRunTread() {
+        return count > 0;
+    }
+
+    public static void setRun() {
+        count--;
+    }
     public static void DeferMetod(Runnable runnable, int sec) {
+        count++;
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(2);
         executor.schedule(runnable, sec, TimeUnit.SECONDS);
     }
