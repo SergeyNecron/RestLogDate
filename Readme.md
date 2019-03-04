@@ -6,7 +6,7 @@
  Hibernate,
  Tomcat,
  Mysql,
- Postgres.
+ Postgres,
  Junit,
  Heroku.
 
