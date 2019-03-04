@@ -7,6 +7,7 @@
  Tomcat,
  Mysql,
  Postgres.
+ Junit,
  Heroku.
 
 Описание задачи:
